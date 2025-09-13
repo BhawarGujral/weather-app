@@ -133,32 +133,37 @@ public class MainActivity extends AppCompatActivity {
 
         changeLanguage.setOnClickListener(view -> {
             if(language.equalsIgnoreCase("en")){
-                language = "hi";
+                language = "fr";
             }else{
                 language = "en";
             }
             setChangeLanguage(language);
         });
-        getPref();
     }
 
     public static MainActivity getInstance(){
         return instance;
     }
 
-   private void setChangeLanguage(String language) {
-       //to change the language
-       System.out.println("language = " + language);
-       Locale locale = new Locale(language);
-       Locale.setDefault(locale);
-       Configuration configuration = getResources().getConfiguration();
-       configuration.locale = locale;
-       getApplicationContext().getResources().updateConfiguration(configuration, getApplicationContext().getResources().getDisplayMetrics());
+    private void setChangeLanguage(String language) {
+        // save pref
+        SharedPreferences sharedPreferences = getSharedPreferences("PreviousWeatherData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("My_language", language);
+        editor.apply();
 
-       //updating views
-       finish();
-       startActivity(getIntent());
-   }
+        // apply locale
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.setLocale(locale); // correct way for modern Android
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+        // restart activity
+        finish();
+        startActivity(getIntent());
+    }
 
     /**
      *  This method retrieves the city name and language saved in the shared preferences and updates the UI by calling the fetchWeather() method.
@@ -177,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
      * This method saves the searched city name and language in the shared preferences.
      * @param searchedCity The city name that is searched.
      */
-    private void setPref(String searchedCity) {
+    private void setPref(String searchedCity,String language) {
         SharedPreferences sharedPreferences = getSharedPreferences("PreviousWeatherData", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -266,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                     Picasso.get().load(weather_icon).into(weatherIco);
                     weatherDesc.setText(weather_descrip);
 
-                    setPref(city);
+                    setPref(city,language);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -285,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(getString(R.string.exit));
         builder.setTitle(getString(R.string.alert));
         builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
-            setPref(cityName.getText().toString());
+            setPref(cityName.getText().toString(),language);
             finish();
         });
         builder.setNegativeButton(getString(R.string.no), (dialog, which) -> {

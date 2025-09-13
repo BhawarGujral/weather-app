@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Météo</string>
+    <string name="city_name">Nom de la ville</string>
+    <string name="enter_city_name">Entrez le nom de la ville</string>
+    <string name="temperature_symbol">0 \u2103</string>
+    <string name="date_time">00:00 janv., 1</string>
+    <string name="wind_speed">Vent : </string>
+    <string name="precip">Précip. : </string>
+    <string name="pressure">Pression : </string>
+    <string name="search_icon">Icône de recherche</string>
+    <string name="add_city">Ajouter une ville</string>
+    <string name="description">Description</string>
+    <string name="show_stored_cities">Afficher les villes enregistrées</string>
+    <string name="search_city">Rechercher une ville</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="exit">Voulez-vous quitter l’application ?</string>
+    <string name="alert">Alerte !</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="wrong_city_name">Nom de ville incorrect saisi..</string>
+    <string name="confirmation">Êtes-vous sûr de vouloir ajouter </string>
+    <string name="add">AJOUTER</string>
+    <string name="enter_city_first">Entrez d’abord une ville...</string>
+    <string name="city_added">Ville ajoutée !</string>
+    <string name="city_already_added">Ville déjà ajoutée !</string>
+    <string name="please_enter_city">Veuillez entrer une ville</string>
+    <string name="no_cities_added">Aucune ville ajoutée</string>
+    <string name="no_cities_available">Aucune ville disponible !</string>
+    <string name="something_went_wrong">Une erreur s’est produite !</string>
+    <string name="stored_city_message">Appui court sur une ville pour voir les détails..\nAppui long pour la supprimer..</string>
+    <string name="ok">Ok</string>
+</resources>
